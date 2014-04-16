@@ -52,6 +52,17 @@ public class TestMessageType {
     assertEquals(2, schema.getMaxDefinitionLevel("Links", "Backward"));
   }
 
+  @Test
+  public void testMixedCaseColumns() {
+    final MessageType schema = MessageTypeParser.parseMessageType(Paper.schema.toString());
+    final Type backwardsType = schema.getType("links", "bAckward");
+    assertEquals(PrimitiveTypeName.INT64,
+        backwardsType.asPrimitiveType().getPrimitiveTypeName());
+
+    final Type docIdType = schema.getType("DOCID");
+    assertEquals(PrimitiveTypeName.INT64,
+        docIdType.asPrimitiveType().getPrimitiveTypeName());
+  }
 
   @Test
   public void testMergeSchema() {
