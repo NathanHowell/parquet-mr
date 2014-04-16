@@ -15,11 +15,7 @@
  */
 package parquet.schema;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import parquet.io.InvalidRecordException;
 
@@ -73,7 +69,7 @@ public class GroupType extends Type {
     this.fields = fields;
     this.indexByName = new HashMap<String, Integer>();
     for (int i = 0; i < fields.size(); i++) {
-      indexByName.put(fields.get(i).getName(), i);
+      indexByName.put(fields.get(i).getName().toLowerCase(Locale.US), i);
     }
   }
 
@@ -90,8 +86,8 @@ public class GroupType extends Type {
    * @param name the requested name
    * @return whether this type contains a field with that name
    */
-  public boolean containsField(String name) {
-    return indexByName.containsKey(name);
+  public boolean containsField(final String name) {
+    return indexByName.containsKey(name.toLowerCase(Locale.US));
   }
 
   /**
@@ -99,11 +95,12 @@ public class GroupType extends Type {
    * @param name
    * @return the index of the field with that name
    */
-  public int getFieldIndex(String name) {
-    if (!indexByName.containsKey(name)) {
+  public int getFieldIndex(final String name) {
+    final String lowerName = name.toLowerCase(Locale.US);
+    if (!indexByName.containsKey(lowerName)) {
       throw new InvalidRecordException(name + " not found in " + this);
     }
-    return indexByName.get(name);
+    return indexByName.get(lowerName);
   }
 
   /**
