@@ -42,7 +42,7 @@ public class ColumnReadStoreImpl implements ColumnReadStore {
   private final MessageType schema;
 
   /**
-   * @param pageReadStore uderlying page storage
+   * @param pageReadStore underlying page storage
    * @param recordConverter the user provided converter to materialize records
    * @param schema the schema we are reading
    */

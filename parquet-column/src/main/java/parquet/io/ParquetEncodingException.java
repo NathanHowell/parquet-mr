@@ -18,7 +18,7 @@ package parquet.io;
 import parquet.ParquetRuntimeException;
 
 /**
- * thrown when a decoding problem occured
+ * thrown when a decoding problem occurred
  *
  * @author Julien Le Dem
  *

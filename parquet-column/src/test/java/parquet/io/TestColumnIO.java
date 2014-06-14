@@ -163,7 +163,7 @@ public class TestColumnIO {
 
   @Test
   public void testReadUsingRequestedSchemaWithExtraFields(){
-    MessageType orginalSchema = new MessageType("schema",
+    MessageType originalSchema = new MessageType("schema",
             new PrimitiveType(REQUIRED, INT32, "a"),
             new PrimitiveType(OPTIONAL, INT32, "b")
     );
@@ -174,15 +174,15 @@ public class TestColumnIO {
     );
     MemPageStore memPageStoreForOriginalSchema = new MemPageStore(1);
     MemPageStore memPageStoreForSchemaWithExtraField = new MemPageStore(1);
-    SimpleGroupFactory groupFactory = new SimpleGroupFactory(orginalSchema);
-    writeGroups(orginalSchema, memPageStoreForOriginalSchema, groupFactory.newGroup().append("a", 1).append("b", 2));
+    SimpleGroupFactory groupFactory = new SimpleGroupFactory(originalSchema);
+    writeGroups(originalSchema, memPageStoreForOriginalSchema, groupFactory.newGroup().append("a", 1).append("b", 2));
 
     SimpleGroupFactory groupFactory2 = new SimpleGroupFactory(schemaWithExtraField);
     writeGroups(schemaWithExtraField, memPageStoreForSchemaWithExtraField, groupFactory2.newGroup().append("a", 1).append("b", 2).append("c",3));
 
     {
       List<Group> groups = new ArrayList<Group>();
-      groups.addAll(readGroups(memPageStoreForOriginalSchema, orginalSchema, schemaWithExtraField, 1));
+      groups.addAll(readGroups(memPageStoreForOriginalSchema, originalSchema, schemaWithExtraField, 1));
       groups.addAll(readGroups(memPageStoreForSchemaWithExtraField, schemaWithExtraField, schemaWithExtraField, 1));
       // TODO: add once we have the support for empty projection
 //      groups1.addAll(readGroups(memPageStore3, schema3, schema2, 1));
@@ -233,7 +233,7 @@ public class TestColumnIO {
 
   @Test
   public void testReadUsingProjectedSchema(){
-    MessageType orginalSchema = new MessageType("schema",
+    MessageType originalSchema = new MessageType("schema",
             new PrimitiveType(REQUIRED, INT32, "a"),
             new PrimitiveType(REQUIRED, INT32, "b")
     );
@@ -241,12 +241,12 @@ public class TestColumnIO {
             new PrimitiveType(OPTIONAL, INT32, "b")
     );
     MemPageStore store = new MemPageStore(1);
-    SimpleGroupFactory groupFactory = new SimpleGroupFactory(orginalSchema);
-    writeGroups(orginalSchema, store, groupFactory.newGroup().append("a", 1).append("b", 2));
+    SimpleGroupFactory groupFactory = new SimpleGroupFactory(originalSchema);
+    writeGroups(originalSchema, store, groupFactory.newGroup().append("a", 1).append("b", 2));
 
     {
       List<Group> groups = new ArrayList<Group>();
-      groups.addAll(readGroups(store, orginalSchema, projectedSchema, 1));
+      groups.addAll(readGroups(store, originalSchema, projectedSchema, 1));
       Object[][] expected = {
               {2},
       };

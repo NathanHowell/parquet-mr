@@ -34,7 +34,7 @@ public class BitPacking {
 
   /**
    * to writes ints to a stream packed to only the needed bits.
-   * there is no guarantee of corecteness if ints larger than the max size are written
+   * there is no guarantee of correctness if ints larger than the max size are written
    *
    * @author Julien Le Dem
    *
@@ -106,7 +106,7 @@ public class BitPacking {
   /**
    *
    * @param bitLength the width in bits of the integers to read
-   * @param inthe stream to read the bytes from
+   * @param in the stream to read the bytes from
    * @return the correct implementation for the width
    */
   public static BitPackingReader createBitPackingReader(int bitLength, InputStream in, long valueCount) {

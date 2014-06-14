@@ -88,25 +88,25 @@ public class MessageColumnIO extends GroupColumnIO {
     private int currentLevel = 0;
 
     private class FieldsMarker {
-      private BitSet vistedIndexes = new BitSet();
+      private BitSet visitedIndexes = new BitSet();
 
       @Override
       public String toString() {
-        return "VistedIndex{" +
-                "vistedIndexes=" + vistedIndexes +
+        return "VisitedIndex{" +
+                "visitedIndexes=" + visitedIndexes +
                 '}';
       }
 
       public void reset(int fieldsCount) {
-        this.vistedIndexes.clear(0, fieldsCount);
+        this.visitedIndexes.clear(0, fieldsCount);
       }
 
       public void markWritten(int i) {
-        vistedIndexes.set(i);
+        visitedIndexes.set(i);
       }
 
       public boolean isWritten(int i) {
-        return vistedIndexes.get(i);
+        return visitedIndexes.get(i);
       }
     }
 
@@ -181,7 +181,7 @@ public class MessageColumnIO extends GroupColumnIO {
       if (DEBUG) log("endField(" + field + ", " + index + ")");
       currentColumnIO = currentColumnIO.getParent();
       if (emptyField) {
-        throw new ParquetEncodingException("empty fields are illegal, the field should be ommited completely instead");
+        throw new ParquetEncodingException("empty fields are illegal, the field should be omitted completely instead");
       }
       fieldsWritten[currentLevel].markWritten(index);
       r[currentLevel] = currentLevel == 0 ? 0 : r[currentLevel - 1];

@@ -18,7 +18,7 @@ package parquet.io;
 import parquet.ParquetRuntimeException;
 
 /**
- * thrown when a problem occured while compiling the column reader
+ * thrown when a problem occurs while compiling the column reader
  *
  * @author Julien Le Dem
  *

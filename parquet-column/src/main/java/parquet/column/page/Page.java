@@ -67,11 +67,10 @@ public class Page {
    * @param bytes the bytes for this page
    * @param valueCount count of values in this page
    * @param uncompressedSize the uncompressed size of the page
-   * @param statistics of the page's values (max, min, num_null)
+   * @param stats statistics of the page's values (max, min, num_null)
    * @param rlEncoding the repetition level encoding for this page
    * @param dlEncoding the definition level encoding for this page
    * @param valuesEncoding the values encoding for this page
-   * @param dlEncoding
    */
   public Page(BytesInput bytes, int valueCount, int uncompressedSize, Statistics stats, Encoding rlEncoding, Encoding dlEncoding, Encoding valuesEncoding) {
     this.bytes = bytes;

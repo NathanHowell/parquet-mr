@@ -301,7 +301,7 @@ public final class PrimitiveType extends Type {
    * @param repetition OPTIONAL, REPEATED, REQUIRED
    * @param primitive STRING, INT64, ...
    * @param name the name of the type
-   * @param originalType (optional) the original type to help with cross schema convertion (LIST, MAP, ...)
+   * @param originalType (optional) the original type to help with cross schema conversion (LIST, MAP, ...)
    */
   public PrimitiveType(Repetition repetition, PrimitiveTypeName primitive, 
                        String name, OriginalType originalType) {

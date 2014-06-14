@@ -242,7 +242,7 @@ public enum Encoding {
    * @param descriptor the column to read
    * @param valuesType the type of values
    * @return the proper values reader for the given column
-   * @throw {@link UnsupportedOperationException} if the encoding is dictionary based
+   * @throws UnsupportedOperationException if the encoding is dictionary based
    */
   public ValuesReader getValuesReader(ColumnDescriptor descriptor, ValuesType valuesType) {
     throw new UnsupportedOperationException("Error decoding " + descriptor + ". " + this.name() + " is dictionary based");
@@ -255,7 +255,7 @@ public enum Encoding {
    * @param valuesType the type of values
    * @param dictionary the dictionary
    * @return the proper values reader for the given column
-   * @throw {@link UnsupportedOperationException} if the encoding is not dictionary based
+   * @throws UnsupportedOperationException if the encoding is not dictionary based
    */
   public ValuesReader getDictionaryBasedValuesReader(ColumnDescriptor descriptor, ValuesType valuesType, Dictionary dictionary) {
     throw new UnsupportedOperationException(this.name() + " is not dictionary based");
